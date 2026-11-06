@@ -127,4 +127,26 @@ app.get("/keiyo_add", (req, res) => {
  res.redirect('/public/keiyo_add.html');
 });
 
+let drink = [
+  { id: 1, code: "001", name: "サイダー" },
+  { id: 2, code: "002", name: "コーラ" },
+  { id: 3, code: "003", name: "ペプシ" },
+  { id: 4, code: "004", name: "トマトジュース" },
+  { id: 5, code: "005", name: "ドクターペッパー" },
+  { id: 6, code: "006", name: "水" },
+];
+
+app.get("/drink", (req, res) => {
+  res.render('db2', { data: drink });
+});
+
+app.get("/drink_add", (req, res) => {
+ let id = req.query.id;
+ let code = req.query.code;
+ let name = req.query.name;
+ let newdata = { id: id, code: code, name: name };
+ drink.push( newdata );
+ res.redirect('/public/drink_add.html');
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
